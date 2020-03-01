@@ -11,25 +11,33 @@ import java.awt.event.WindowEvent;
  */
 public class Client {
 
-	private Client() {}
+	// -------------------- Variables --------------------
+
+	private static final int N = 3;
+
+	private Client() {
+	}
 
 	// -------------------- Main --------------------
 
 	public static final void main(String[] args) throws Exception {
 
 		JFrame mainFrame = new JFrame("TicTacToe");
-
-
 		mainFrame.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent windowEvent){
+			public void windowClosing(WindowEvent windowEvent) {
 				System.exit(0);
 			}
 		});
 
 		JPanel board = new JPanel();
 		board.setLayout(new GridLayout(3, 1));
-		for (int i = 0; i < 9; i++) {
-			board.add(new Spot());
+
+		int row;
+		int col;
+		for (int i = 0; i < N * N; i++) {
+			row = i / N;
+			col = i % N;
+			board.add(new Spot(row, col));
 		}
 
 		mainFrame.add(board);
